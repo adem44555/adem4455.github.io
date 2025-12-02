@@ -1,5 +1,5 @@
 
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -98,8 +98,8 @@
   <section id="about">
     <h2>About Me</h2>
     <p>
-      I am <strong>Adem Oncu</strong>, a dedicated Unity game developer currently studying Game Development at UWS.
-      I focus on building immersive gameplay systems such as movement, combat, and exploration.
+      I am <strong>Adem Oncu</strong>, a dedicated Unity game developer currently studying Game Development at UWS on my 3rd year.
+      I focus on building immersive gameplay systems such as movement, combat, enemy AI and exploration.
       I'm hard-working, always on time, reliable, and constantly improving my skills.
     </p>
   </section>
