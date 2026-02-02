@@ -1,86 +1,245 @@
-
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adem Oncu – Portfolio</title>
+  <title>Adem Oncu – Game Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
   <style>
+    /* VARIABLES */
+    :root {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --accent: #00e676; /* Vivid Green */
+      --text-main: #f5f5f5;
+      --text-muted: #b0b0b0;
+      --font-main: 'Inter', sans-serif;
+    }
+
+    /* GLOBAL STYLES */
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0d0d0d;
-      color: #eaeaea;
+      font-family: var(--font-main);
+      background: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
     }
-    a { color: #4caf50; text-decoration: none; }
-
-    /* NAV */
+    
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    ul { padding-left: 20px; color: var(--text-muted); }
+    
+    /* NAVIGATION */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 8%;
-      background: #121212;
+      background: rgba(18, 18, 18, 0.95);
       position: sticky;
       top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #333;
+      backdrop-filter: blur(10px);
     }
-    nav h2 { margin: 0; font-size: 24px; letter-spacing: 1px; }
-    nav a { margin-left: 20px; }
+    nav h2 { margin: 0; font-size: 24px; font-weight: 700; color: var(--accent); }
+    nav div a {
+      margin-left: 30px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    nav div a:hover { color: var(--accent); }
 
-    /* HERO */
+    /* HERO SECTION */
     .hero {
       text-align: center;
-      padding: 120px 20px;
+      padding: 100px 20px;
+      background: radial-gradient(circle at center, #1e2520 0%, #121212 70%);
     }
     .hero h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+      font-size: 56px;
+      margin: 0 0 10px 0;
+      background: -webkit-linear-gradient(45deg, #fff, #b0b0b0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .hero p {
       font-size: 20px;
-      color: #b5b5b5;
+      color: var(--accent);
+      margin-top: 0;
+      font-weight: 500;
+    }
+    .tagline {
+      color: var(--text-muted);
+      margin-top: 15px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    /* SECTION */
+    /* SECTIONS */
     section {
-      padding: 60px 10%;
-      max-width: 900px;
+      padding: 80px 8%;
+      max-width: 1200px;
       margin: auto;
     }
-    h2 {
+    
+    h2.section-title {
       font-size: 32px;
-      margin-bottom: 20px;
-      border-left: 5px solid #4caf50;
-      padding-left: 12px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+    }
+    h2.section-title::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 32px;
+      background: var(--accent);
+      margin-right: 15px;
+      border-radius: 4px;
+    }
+
+    /* ABOUT */
+    .about-content {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 800px;
+    }
+
+    /* PROJECT GRID */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 30px;
     }
 
     /* PROJECT CARD */
     .project-card {
-      background: #161616;
-      padding: 30px;
-      border-radius: 12px;
-      border: 1px solid #222;
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid #333;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
-    iframe {
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+    
+    .video-container {
+      position: relative;
       width: 100%;
-      aspect-ratio: 16/9;
-      border: none;
-      margin-top: 20px;
-      border-radius: 8px;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background: #000;
     }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .card-content {
+      padding: 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    .project-header h3 {
+      margin: 0;
+      font-size: 24px;
+      color: #fff;
+    }
+    .project-badge {
+      background: #333;
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .tech-stack {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    .tech-tag {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #ddd;
+    }
+
+    .card-text {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    /* BUTTON STYLES */
+    .btn-group {
+      display: flex;
+      margin-top: auto;
+    }
+    .btn {
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-block;
+      box-sizing: border-box;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      border: none;
+    }
+    .btn-primary:hover { background: #00b35c; }
 
     /* FOOTER */
     footer {
-      padding: 40px;
+      padding: 50px;
       text-align: center;
-      background: #121212;
-      color: #777;
-      margin-top: 40px;
+      background: #0a0a0a;
+      border-top: 1px solid #222;
+      color: #666;
+    }
+    footer a { color: var(--accent); }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 768px) {
+      .project-grid { grid-template-columns: 1fr; }
+      nav { flex-direction: column; gap: 15px; }
+      nav div a { margin: 0 10px; }
+      .hero h1 { font-size: 40px; }
     }
   </style>
 </head>
 
 <body>
+
   <nav>
     <h2>Adem Oncu</h2>
     <div>
@@ -92,49 +251,108 @@
 
   <div class="hero">
     <h1>Game Developer</h1>
-    <p>Unity • C# • Action RPG Systems • Always Learning</p>
+    <p>Unity • C# • Action RPG Systems</p>
+    <p class="tagline">Creating immersive gameplay experiences with a focus on polished mechanics and atmospheric design.</p>
   </div>
 
   <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I am <strong>Adem Oncu</strong>, a dedicated Unity game developer currently studying Game Development at UWS on my 3rd year.
-      I focus on building immersive gameplay systems such as movement, combat, enemy AI and exploration.
-      I'm hard-working, always on time, reliable, and constantly improving my skills.
-    </p>
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+      <p>
+        I am <strong>Adem Oncu</strong>, a dedicated Unity game developer studying Game Development at UWS.
+        My passion lies in building complex gameplay systems—from fluid movement controllers to intricate combat mechanics.
+      </p>
+      <p>
+        I thrive in collaborative environments (like Game Jams) and am known for being reliable, punctual, and constantly pushing my technical skills to the next level.
+      </p>
+    </div>
   </section>
 
   <section id="projects">
-    <h2>Projects</h2>
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="project-grid">
 
-    <div class="project-card">
-      <h3>Path of Pain – Action Adventure RPG</h3>
-      <p>
-        <strong>Path of Pain</strong> is a semi open-world action-adventure RPG built in Unity.
-        The game features core mechanics such as:
-      </p>
-      <ul>
-        <li>Fluid character movement</li>
-        <li>Melee attack and combat system</li>
-        <li>World exploration mechanics</li>
-        <li>Healing & health system</li>
-      </ul>
-      <p>
-        This project strengthened my Unity programming, system design, and problem-solving abilities.
-      </p>
+      <div class="project-card">
+        <div class="video-container">
+          <iframe src="https://drive.google.com/file/d/1_8zJwhfenR-j2wHw6Ts59Lu7vPgCf36H/preview" allow="autoplay; fullscreen"></iframe>
+        </div>
+        <div class="card-content">
+          <div class="project-header">
+            <h3>Fractured Mask</h3>
+            <span class="project-badge">GGJ 2026</span>
+          </div>
+          
+          <div class="tech-stack">
+            <span class="tech-tag">Unity</span>
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">3D Horror</span>
+            <span class="tech-tag">Puzzle</span>
+          </div>
 
-      <iframe src="https://drive.google.com/file/d/1qbzQoxThhohVNib5cGtc3MITlE29Awem/preview" allow="autoplay; fullscreen"></iframe>
+          <div class="card-text">
+            <p>
+              <strong>Theme: "Mask"</strong>. A first-person horror puzzle game developed in 48 hours for the <strong>Global Game Jam 2026</strong> at Glasgow Caledonian University.
+            </p>
+            <p>
+              Players are trapped in a dark dungeon and must explore the depths to find missing mask fragments. The goal is to reconstruct the mask to unlock the exit while avoiding the dangers lurking in the shadows.
+            </p>
+          </div>
+
+          <div class="btn-group">
+            <a href="https://drive.google.com/file/d/1_8zJwhfenR-j2wHw6Ts59Lu7vPgCf36H/view?usp=sharing" class="btn btn-primary" target="_blank">Watch Gameplay Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="video-container">
+          <iframe src="https://drive.google.com/file/d/1qbzQoxThhohVNib5cGtc3MITlE29Awem/preview" allow="autoplay; fullscreen"></iframe>
+        </div>
+        <div class="card-content">
+          <div class="project-header">
+            <h3>Path of Pain</h3>
+            <span class="project-badge">Action RPG</span>
+          </div>
+
+          <div class="tech-stack">
+            <span class="tech-tag">Unity</span>
+            <span class="tech-tag">C#</span>
+            <span class="tech-tag">Open World</span>
+            <span class="tech-tag">Combat</span>
+          </div>
+
+          <div class="card-text">
+            <p>
+              A semi open-world action-adventure RPG. This project was a deep dive into system architecture and character controller logic.
+            </p>
+            <ul>
+              <li>Fluid character movement & state machines</li>
+              <li>Melee combat system with hitboxes</li>
+              <li>Exploration mechanics & Health systems</li>
+            </ul>
+          </div>
+
+          <div class="btn-group">
+            <a href="https://drive.google.com/file/d/1qbzQoxThhohVNib5cGtc3MITlE29Awem/view?usp=sharing" class="btn btn-primary" target="_blank">Watch Gameplay Video</a>
+          </div>
+        </div>
+      </div>
+
     </div>
-
   </section>
 
   <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:ademoncu07@gmail.com">ademoncu07@gmail.com</a></p>
+    <h2 class="section-title">Get in Touch</h2>
+    <p style="color: #b0b0b0; font-size: 18px;">
+      Interested in collaborating or have a question?
+      <br><br>
+      📧 <a href="mailto:ademoncu07@gmail.com" style="color: var(--accent); font-weight: bold;">ademoncu07@gmail.com</a>
+    </p>
   </section>
 
   <footer>
-    © 2025 Adem Oncu — Portfolio
+    © 2026 Adem Oncu — Built with HTML & CSS
   </footer>
+
 </body>
 </html>
